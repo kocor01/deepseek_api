@@ -14,12 +14,27 @@ client := deepseek_api.NewClient(deepseek_api.Config{
 })
 ```
 
-# 两种调用方式：
+# 调用方法：
 
 ## QuickChat()：简单快捷的单次对话
 ```
 // 使用QuickChat便捷方法
 response, err := client.QuickChat(
+    "你是个乐于助人的助手",
+    "你好",
+)
+if err != nil {
+    t.Fatalf("Error in QuickChat: %v", err)
+}
+
+fmt.Println("Assistant response:")
+fmt.Println(response)
+```
+
+## QuickChatWebSearch()：简单快捷的单次对话，启用联网搜索
+```
+// 使用QuickChat便捷方法
+response, err := client.QuickChatWebSearch(
     "你是个乐于助人的助手",
     "你好",
 )
