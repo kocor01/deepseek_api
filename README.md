@@ -2,9 +2,6 @@
 ```
 // API密钥
 apiKey := "DEEPSEEK_API_KEY"
-if apiKey == "" {
-    fmt.Print("DEEPSEEK_API_KEY environment variable not set")
-}
 
 // 创建客户端
 client := deepseek_api.NewClient(deepseek_api.Config{
