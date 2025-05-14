@@ -1,8 +1,8 @@
 package deepseek_test
 
 import (
-	"deepseek_api"
 	"fmt"
+	"github.com/kocor01/deepseek_api"
 	"testing"
 )
 
