@@ -8,8 +8,7 @@ import (
 
 func TestDeepSeekAPI(t *testing.T) {
 	// 从环境变量获取API密钥
-	//apiKey := "DEEPSEEK_API_KEY"
-	apiKey := "sk-a66cc58e42f84ada936a925b372813cf"
+	apiKey := "DEEPSEEK_API_KEY"
 
 	// 创建客户端
 	client := deepseek_api.NewClient(deepseek_api.Config{
@@ -21,13 +20,25 @@ func TestDeepSeekAPI(t *testing.T) {
 	// 使用QuickChat便捷方法
 	response, err := client.QuickChat(
 		"你是个乐于助人的助手",
-		"你好",
+		"2025年5月ai最新资讯top3",
 	)
 	if err != nil {
 		t.Fatalf("Error in QuickChat: %v", err)
 	}
 
-	fmt.Println("Assistant response:")
+	fmt.Println("QuickChat Assistant response:")
+	fmt.Println(response)
+
+	// 使用QuickChatWebSearch便捷方法
+	response, err = client.QuickChatWebSearch(
+		"你是个乐于助人的助手",
+		"2025年5月ai最新资讯top3",
+	)
+	if err != nil {
+		t.Fatalf("Error in QuickChatWebSearch: %v", err)
+	}
+
+	fmt.Println("QuickChatWebSearch Assistant response:")
 	fmt.Println(response)
 
 	// 使用完整的Chat方法
@@ -39,6 +50,7 @@ func TestDeepSeekAPI(t *testing.T) {
 		Model:       "deepseek-chat",
 		MaxTokens:   1024,
 		Temperature: 0.7,
+		WebSearch:   true,
 	}
 
 	fullResp, err := client.Chat(fullReq)

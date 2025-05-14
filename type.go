@@ -16,6 +16,7 @@ type Request struct {
 	FrequencyPenalty float64   `json:"frequency_penalty"` // 频率惩罚
 	PresencePenalty  float64   `json:"presence_penalty"`  // 存在惩罚
 	Stop             []string  `json:"stop,omitempty"`    // 停止词
+	WebSearch        bool      `json:"web_search"`        // 是否启用联网搜索
 }
 
 // Response 表示API响应结构

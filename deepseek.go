@@ -137,3 +137,25 @@ func (c *Client) QuickChat(systemPrompt, userMessage string) (string, error) {
 
 	return resp.Choices[0].Message.Content, nil
 }
+
+// QuickChatWebSearch 快速发送单条消息的便捷方法,启用联网搜索
+func (c *Client) QuickChatWebSearch(systemPrompt, userMessage string) (string, error) {
+	req := Request{
+		Messages: []Message{
+			{Role: "system", Content: systemPrompt},
+			{Role: "user", Content: userMessage},
+		},
+		WebSearch: true,
+	}
+
+	resp, err := c.Chat(req)
+	if err != nil {
+		return "", err
+	}
+
+	if len(resp.Choices) == 0 {
+		return "", fmt.Errorf("no choices in response")
+	}
+
+	return resp.Choices[0].Message.Content, nil
+}
